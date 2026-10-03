@@ -100,7 +100,7 @@
   <h2>6. 보관 기간과 파기</h2>
   <ul>
     <li>계정 삭제: 앱의 <strong>설정 → 계정 → 계정 삭제</strong>에서 언제든지 지울 수 있습니다. 직접 만든 병동은 먼저 편집자에게 넘기거나 병동 전체를 삭제해야 합니다.</li>
-    <li>파기 절차와 방법: 계정을 삭제하면 로그인 정보, 병동 멤버 정보, 내가 만든 초대 링크, 푸시 토큰, 앱 언어, 호출 횟수를 서버에서 바로 지웁니다(전자 기록을 복구할 수 없게 삭제). 운영자는 따로 백업을 두지 않습니다. 삭제된 로그인 정보는 Google 정책에 따라 180일 안에 Google의 운영·백업 시스템에서도 지워지며, 로그인 서비스가 남기는 IP 주소 기록은 몇 주 동안만 보관됩니다.</li>
+    <li>파기 절차와 방법: 계정을 삭제하면 로그인 정보, 병동 멤버 정보, 내가 만든 초대 링크, 푸시 토큰, 앱 언어, 호출 횟수를 서버에서 바로 지웁니다(전자 기록을 복구할 수 없게 삭제). 다만 로그인된 다른 기기가 데이터를 다시 만들지 못하도록 내부 계정 ID만 7일 동안 보관한 뒤 자동으로 삭제합니다. 운영자는 따로 백업을 두지 않습니다. 삭제된 로그인 정보는 Google 정책에 따라 180일 안에 Google의 운영·백업 시스템에서도 지워지며, 로그인 서비스가 남기는 IP 주소 기록은 몇 주 동안만 보관됩니다.</li>
     <li>근무표 안의 이름 줄과 사업장 기록(누가 근무표를 저장·공개했는지, 누가 가입을 승인했는지를 가리키는 내부 사용자 ID)은 계정을 삭제해도 병동에 남습니다. 이름 줄을 지우려면 근무표 작성자에게 요청해 주세요. 병동이 삭제되면 함께 삭제됩니다.</li>
     <li>로그인하지 않고 이 기기에만 저장한 근무표는 앱을 삭제하면(웹은 브라우저 데이터를 지우면) 함께 삭제됩니다. 계정을 삭제해도 그대로 남습니다.</li>
     <li>내보낸 이미지·PDF·인쇄물·파일에는 근무표 내용이 그대로 들어 있습니다. "이름을 번호로 바꿔 공유"를 켜지 않으면 이름도 들어갑니다. 이미 다른 사람에게 전달된 사본은 원격으로 지울 수 없습니다.</li>
@@ -221,7 +221,7 @@
   <h2>6. 保有期間と削除</h2>
   <ul>
     <li>アカウントの削除：アプリの<strong>設定 → アカウント → アカウントを削除</strong>からいつでも削除できます。自分が作成した病棟は、先に編集者に引き継ぐか病棟ごと削除する必要があります。</li>
-    <li>削除の手順と方法：アカウントを削除すると、ログイン情報、病棟のメンバー情報、自分が作成した招待リンク、プッシュトークン、アプリの言語、呼び出し回数をサーバーからすぐに削除します（復元できない形で電子記録を削除）。運営者は別のバックアップを持ちません。削除されたログイン情報はGoogleの方針に従い180日以内にGoogleの運用・バックアップシステムからも消去され、ログインサービスが記録するIPアドレスは数週間だけ保管されます。</li>
+    <li>削除の手順と方法：アカウントを削除すると、ログイン情報、病棟のメンバー情報、自分が作成した招待リンク、プッシュトークン、アプリの言語、呼び出し回数をサーバーからすぐに削除します（復元できない形で電子記録を削除）。ただし、ログイン中の他の端末がデータを作り直せないよう、内部アカウントIDだけを7日間保管し、その後自動的に削除します。運営者は別のバックアップを持ちません。削除されたログイン情報はGoogleの方針に従い180日以内にGoogleの運用・バックアップシステムからも消去され、ログインサービスが記録するIPアドレスは数週間だけ保管されます。</li>
     <li>勤務表の中の名前の行と職場の記録（勤務表の保存・公開や参加の承認を誰が行ったかを示す内部ユーザーID）は、アカウントを削除しても病棟に残ります。名前の行を削除するには勤務表の作成者に依頼してください。病棟が削除されると一緒に削除されます。</li>
     <li>ログインせずにこの端末にだけ保存した勤務表は、アプリを削除すると（Webではブラウザのデータを消去すると）一緒に削除されます。アカウントを削除してもそのまま残ります。</li>
     <li>書き出した画像・PDF・印刷物・ファイルには勤務表の内容がそのまま含まれます。「名前を番号に置き換えて共有」をオンにしない限り、名前も含まれます。すでに他の人に渡った写しを遠隔で削除することはできません。</li>
@@ -344,7 +344,7 @@
   <h2>6. Retention and Deletion</h2>
   <ul>
     <li>Deleting your account: in the App, open <strong>Settings → Account → Delete account</strong> at any time. Wards you made must first be handed over to an editor or deleted entirely.</li>
-    <li>How data is destroyed: when you delete your account, your sign-in details, ward memberships, invite links you made, push tokens, app language and call count are deleted from the server at once (electronic records deleted so they cannot be restored). We keep no separate backups. Google removes deleted sign-in data from its live and backup systems within 180 days under its policy, and the IP addresses logged by the sign-in service are kept only for a few weeks.</li>
+    <li>How data is destroyed: when you delete your account, your sign-in details, ward memberships, invite links you made, push tokens, app language and call count are deleted from the server at once (electronic records deleted so they cannot be restored). Only your internal account ID is kept for 7 days so that a device still signed in cannot re-create data; it is then deleted automatically. We keep no separate backups. Google removes deleted sign-in data from its live and backup systems within 180 days under its policy, and the IP addresses logged by the sign-in service are kept only for a few weeks.</li>
     <li>Your name rows in rosters and other workplace records (the internal user ID that shows who saved or published a roster or approved a join request) stay with the ward after you delete your account. To remove your name rows, ask the person who made the roster. They are deleted when the ward is deleted.</li>
     <li>Rosters kept only on this device without signing in are removed when you uninstall the App (on the web, when you clear the browser's data). Deleting your account does not remove them.</li>
     <li>Images, PDFs, prints and files you export contain the roster itself, including names unless you turn on "Replace names with numbers". Copies already passed to others cannot be deleted remotely.</li>
