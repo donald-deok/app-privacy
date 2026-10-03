@@ -26,17 +26,61 @@
 
 <section lang="ko">
   <h1>Duty Roster 개인정보처리방침</h1>
-  <p class="meta">최종 생성일: 2026-10-01</p>
+  <p class="meta">최종 생성일: 2026-10-03</p>
 
-  <h2>1. 수집하는 정보</h2>
+  <h2>1. 처리하는 정보와 목적</h2>
   <p>
-    Duty Roster(이하 "본 앱")은 별도의 회원가입 없이 사용할 수 있으며,
-    사용자가 입력한 데이터(예: 기록, 설정값)는 기본적으로 기기 로컬 저장소에만 저장됩니다.
-    본 앱은 서버로 개인 데이터를 전송하거나 별도의 회원 데이터베이스에 저장하지 않습니다.
+    Duty Roster(이하 "본 앱")은 로그인 없이 쓸 수 있습니다. 로그인하지 않으면 근무표는
+    이 기기(웹은 그 브라우저)의 저장소에만 저장되며 서버로 보내지 않습니다.
+  </p>
+  <p>직원 초대·근무표 공개·알림 같은 서버 기능을 쓰려고 로그인하면 다음 정보를 처리합니다.</p>
+  <ul>
+    <li>로그인 서비스(Firebase Authentication)가 보관하는 정보: 이메일 주소, Apple 또는 Google 계정 식별자. Google로 로그인하면 Google 계정의 이름과 프로필 사진 URL도 보관되며, Apple로 로그인하면 이메일이 Apple의 중계 주소일 수 있습니다 — 계정을 만들고 본인을 확인하기 위해</li>
+    <li>병동에 가입할 때 입력한 표시 이름 — 그 병동의 작성자·편집자가 가입 요청을 확인하고 멤버를 관리하기 위해</li>
+    <li>병동·근무표·멤버 정보(근무표 안의 이름 줄, 멤버의 역할과 연결된 줄) — 근무표를 보관하고 웹과 iPhone 사이에 동기화하며 병동 멤버에게 보여 주기 위해</li>
+    <li>기기의 푸시 토큰과 앱 언어 — 근무표 공개 알림을 그 언어로 보내기 위해</li>
+    <li>계정별 서버 호출 횟수 — 짧은 시간에 지나치게 많은 요청을 막아 서비스를 보호하기 위해</li>
+    <li>초대 링크의 해시 값 — 초대 링크가 맞는지 확인하기 위해(링크 자체는 저장하지 않습니다)</li>
+  </ul>
+  <p>
+    로그인 처리 과정에서 Google(Firebase Authentication)이 IP 주소와 사용자 에이전트 같은 접속 정보를 부정 사용 방지에 씁니다.
+    전화번호·사번·생년월일은 받지 않습니다. 운영자는 근무표 내용을 보지 않으며, 분석이나 광고에 쓰지 않습니다.
   </p>
 
+  <h2>2. 같은 병동의 멤버에게 보이는 정보</h2>
+  <p>
+    병동의 멤버는 그 병동에 공개된 근무표 전체(이름 줄 포함)를 볼 수 있습니다. 멤버 목록과 멤버의 표시 이름은
+    작성자·편집자만 볼 수 있으며, 이들은 가입 요청자의 표시 이름을 보고 승인합니다. 근무표 내용은 병동 작성자가 관리합니다.
+  </p>
 
-  <h2>2. 광고 및 광고 식별자</h2>
+  <h2>3. 보관 장소와 국외 이전</h2>
+  <ul>
+    <li>병동·근무표·멤버 정보, 표시 이름, 푸시 토큰, 앱 언어, 호출 횟수, 초대 링크 해시: Google Cloud Firestore와 Cloud Functions, 일본 도쿄 리전(asia-northeast1)</li>
+    <li>로그인 정보: Firebase Authentication, 미국(Google에 따르면 이 서비스는 미국 데이터센터에서만 운영됩니다)</li>
+    <li>알림 전달: Firebase Cloud Messaging, 미국 등 Google 설비가 있는 국가(전 세계 Google 인프라)</li>
+  </ul>
+  <p>한국 사용자를 위한 개인정보 국외 이전 고지(개인정보 보호법 제28조의8):</p>
+  <ul>
+    <li>이전받는 자: Google LLC (연락처 <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>)</li>
+    <li>이전되는 국가와 항목:
+      일본(도쿄 데이터센터, asia-northeast1) — 병동·근무표·멤버 정보, 표시 이름, 푸시 토큰, 앱 언어, 호출 횟수;
+      미국 — 이메일 주소, Apple 또는 Google 계정 식별자, Google 계정의 이름과 사진 URL;
+      미국 등 Google 설비가 있는 국가 — 알림 전달을 위한 푸시 토큰</li>
+    <li>이전 시기와 방법: 로그인하거나 서버 기능을 쓸 때(로그인·저장·알림) 암호화된 통신(HTTPS)으로 네트워크를 통해 전송</li>
+    <li>이용 목적: 계정 관리, 근무표 보관과 동기화, 근무표 공개 알림 발송</li>
+    <li>보유·이용 기간: 계정을 삭제할 때까지(아래 6의 사업장 기록은 병동이 삭제될 때까지)</li>
+    <li>거부 방법과 효과: 로그인하지 않고 쓰면 이전되지 않습니다. 이 경우 직원 초대·공개·알림 같은 서버 기능은 쓸 수 없고, 기기에서 근무표를 만들고 쓰는 기능은 그대로 쓸 수 있습니다.</li>
+  </ul>
+
+  <h2>4. 처리 위탁</h2>
+  <p>서버·인증·푸시 운영(데이터 보관, 로그인 처리, 알림 전달)을 Google LLC(Firebase)에 위탁합니다.</p>
+
+
+  <h2>5. 광고 및 광고 식별자</h2>
+  <p>
+    광고는 iOS 앱에서 구독하지 않은 사용자에게만 배너로 보이며, 근무표 데이터는 광고 SDK에 넘기지 않습니다.
+    구독은 Apple 인앱 결제로 판매하며 운영자는 결제 정보를 받지 않습니다.
+  </p>
   <p>
     본 앱은 Google AdMob을 통해 광고를 게재합니다. AdMob은 광고 개인화를 위해
     광고 식별자(예: iOS IDFA, Android 광고 ID)와 기기/사용 정보를 수집할 수 있습니다.
@@ -49,41 +93,236 @@
   </p>
   <p>
     광고 식별자 수집을 원하지 않는 경우 다음 경로에서 옵트아웃할 수 있습니다:
-
     iOS는 <code>설정 &gt; 개인정보 보호 및 보안 &gt; 추적</code>(앱 추적 투명성, ATT)에서 앱별 추적 권한을 관리할 수 있습니다.
   </p>
 
 
-  <h2>3. 정보의 보관 및 삭제</h2>
+  <h2>6. 보관 기간과 파기</h2>
+  <ul>
+    <li>계정 삭제: 앱의 <strong>설정 → 계정 → 계정 삭제</strong>에서 언제든지 지울 수 있습니다. 직접 만든 병동은 먼저 편집자에게 넘기거나 병동 전체를 삭제해야 합니다.</li>
+    <li>파기 절차와 방법: 계정을 삭제하면 로그인 정보, 병동 멤버 정보, 내가 만든 초대 링크, 푸시 토큰, 앱 언어, 호출 횟수를 서버에서 바로 지웁니다(전자 기록을 복구할 수 없게 삭제). 운영자는 따로 백업을 두지 않습니다. 삭제된 로그인 정보는 Google 정책에 따라 180일 안에 Google의 운영·백업 시스템에서도 지워지며, 로그인 서비스가 남기는 IP 주소 기록은 몇 주 동안만 보관됩니다.</li>
+    <li>근무표 안의 이름 줄과 사업장 기록(누가 근무표를 저장·공개했는지, 누가 가입을 승인했는지를 가리키는 내부 사용자 ID)은 계정을 삭제해도 병동에 남습니다. 이름 줄을 지우려면 근무표 작성자에게 요청해 주세요. 병동이 삭제되면 함께 삭제됩니다.</li>
+    <li>로그인하지 않고 이 기기에만 저장한 근무표는 앱을 삭제하면(웹은 브라우저 데이터를 지우면) 함께 삭제됩니다. 계정을 삭제해도 그대로 남습니다.</li>
+    <li>내보낸 이미지·PDF·인쇄물·파일에는 근무표 내용이 그대로 들어 있습니다. "이름을 번호로 바꿔 공유"를 켜지 않으면 이름도 들어갑니다. 이미 다른 사람에게 전달된 사본은 원격으로 지울 수 없습니다.</li>
+  </ul>
+
+  <h2>7. 안전관리조치와 유출 통지</h2>
+  <ul>
+    <li>전송 구간은 모두 암호화(HTTPS)합니다.</li>
+    <li>보안 규칙으로 본인과 같은 병동의 멤버만 데이터를 읽을 수 있게 접근을 제한하고, 승인 대기·퇴사(보관)한 계정은 근무표를 읽지 못합니다.</li>
+    <li>초대 링크는 해시 값만 저장하며, 다시 만들면 이전 링크는 바로 쓸 수 없습니다.</li>
+    <li>서비스에 필요한 최소한의 정보만 받습니다.</li>
+    <li>데이터는 일본과 미국(알림 전달은 Google 설비가 있는 다른 국가 포함)에서 처리되며, 그 국가의 개인정보 제도를 고려해 조치합니다.</li>
+    <li>개인정보 유출이 확인되면 지체 없이 해당 사용자에게 알리고, 법령에 따라 관계 기관에 신고합니다.</li>
+  </ul>
+
+  <h2>8. 웹 버전</h2>
   <p>
-    로컬 저장소에 저장된 데이터는 앱을 삭제하면 함께 삭제됩니다. 앱 안에서는
-    항목을 하나씩 지울 수 있습니다.
+    웹 버전(<a href="https://duty-roster-89f38.web.app/duty/">https://duty-roster-89f38.web.app/duty/</a>)도 같은 방식으로 동작합니다.
+    로그인하지 않으면 근무표는 그 브라우저의 저장소에만 저장됩니다. 웹 버전은 글꼴을 Google Fonts에서 불러오며,
+    이때 브라우저가 Google 서버에 접속합니다. 링크로 근무표를 공유하는 기능은 없어졌습니다.
   </p>
 
-  <h2>4. 웹 버전과 공유 링크</h2>
+  <h2>9. 이용자의 권리와 구제 방법</h2>
+  <p>
+    언제든지 개인정보의 열람·정정·삭제·처리정지를 아래 이메일로 요청할 수 있으며, 지체 없이 처리합니다.
+    근무표에 이름이 들어간 경위(출처)도 문의할 수 있습니다. 근무표 안의 이름 줄은 병동 작성자가 관리하므로 작성자에게 먼저 요청해 주세요.
+  </p>
+  <p>개인정보 침해에 대한 신고·상담은 다음 기관에 할 수 있습니다.</p>
   <ul>
-    <li>웹 버전(https://donald-deok.github.io/duty/)은 근무표를 그 브라우저의 저장소에만 저장합니다. 계정과 서버가 없고, 근무표 데이터를 어디에도 보내지 않습니다. 웹 버전은 글꼴을 Google Fonts에서 불러오며, 이때 브라우저가 Google 서버에 접속합니다.</li>
-    <li>공유 링크에는 근무표 내용이 그대로 들어 있습니다. "이름을 번호로 바꿔 공유"를 켜지 않으면 이름도 들어갑니다. 링크를 가진 사람은 누구나 열 수 있습니다. 근무표 내용은 링크의 <code>#</code> 뒤에 있어 웹 서버로 전송되지 않습니다.</li>
+    <li>개인정보침해신고센터(한국인터넷진흥원, KISA): 국번없이 118, <a href="https://privacy.kisa.or.kr">privacy.kisa.or.kr</a></li>
+    <li>개인정보분쟁조정위원회: 1833-6972, <a href="https://www.kopico.go.kr">kopico.go.kr</a></li>
+    <li>일본 개인정보보호위원회(個人情報保護委員会): <a href="https://www.ppc.go.jp">ppc.go.jp</a></li>
   </ul>
-  <h2>5. 문의처</h2>
-  <p>개인정보 관련 문의: <a href="mailto:kdhmny@gmail.com">kdhmny@gmail.com</a></p>
+
+  <h2>10. 운영자와 문의처</h2>
+  <ul>
+    <li>운영자: 김덕현(개인 개발자) — 대표자이자 개인정보 보호책임자</li>
+    <li>연락처: <a href="mailto:kdhmny@gmail.com">kdhmny@gmail.com</a></li>
+    <li>주소: 요청하면 지체 없이 알려 드립니다.</li>
+  </ul>
+</section>
+
+<hr>
+
+<section lang="ja">
+  <h1>Duty Roster プライバシーポリシー</h1>
+  <p class="meta">最終生成日：2026-10-03</p>
+
+  <h2>1. 取り扱う情報と利用目的</h2>
+  <p>
+    Duty Roster（以下「本アプリ」）はログインせずに使えます。ログインしない場合、勤務表は
+    この端末（Webではそのブラウザ）のストレージにのみ保存され、サーバーには送信されません。
+  </p>
+  <p>スタッフの招待・勤務表の公開・通知などのサーバー機能を使うためにログインすると、次の情報を取り扱います。</p>
+  <ul>
+    <li>ログインサービス（Firebase Authentication）が保管する情報：メールアドレス、AppleまたはGoogleのアカウント識別子。Googleでログインした場合はGoogleアカウントの名前とプロフィール写真のURLも保管され、Appleでログインした場合はメールアドレスがAppleの中継アドレスになることがあります — アカウントの作成と本人確認のため</li>
+    <li>病棟に参加するときに入力した表示名 — その病棟の作成者・編集者が参加リクエストを確認し、メンバーを管理するため</li>
+    <li>病棟・勤務表・メンバーの情報（勤務表の中の名前の行、メンバーの役割と紐づいた行）— 勤務表を保管し、WebとiPhoneの間で同期し、病棟のメンバーに表示するため</li>
+    <li>端末のプッシュトークンとアプリの言語 — 勤務表の公開通知をその言語で送るため</li>
+    <li>アカウントごとのサーバー呼び出し回数 — 短時間の過剰なリクエストを防ぎ、サービスを守るため</li>
+    <li>招待リンクのハッシュ値 — 招待リンクが正しいか確認するため（リンクそのものは保存しません）</li>
+  </ul>
+  <p>
+    ログインの処理でGoogle（Firebase Authentication）がIPアドレスやユーザーエージェントなどの接続情報を不正利用の防止に使います。
+    電話番号・社員番号・生年月日は取得しません。運営者は勤務表の内容を見たり、分析や広告に使ったりしません。
+  </p>
+
+  <h2>2. 同じ病棟のメンバーに表示される情報</h2>
+  <p>
+    病棟のメンバーは、その病棟で公開された勤務表全体（名前の行を含む）を見ることができます。メンバーの一覧と表示名を見られるのは
+    作成者・編集者だけで、参加リクエストをした人の表示名を見て承認します。勤務表の内容は病棟の作成者が管理します。
+  </p>
+
+  <h2>3. 保管場所と国外移転</h2>
+  <ul>
+    <li>病棟・勤務表・メンバーの情報、表示名、プッシュトークン、アプリの言語、呼び出し回数、招待リンクのハッシュ：Google Cloud FirestoreとCloud Functions、日本・東京リージョン（asia-northeast1）</li>
+    <li>ログイン情報：Firebase Authentication、米国（Googleによれば、このサービスは米国のデータセンターでのみ運用されています）</li>
+    <li>通知の配信：Firebase Cloud Messaging、米国などGoogleの設備がある国（Googleの世界中のインフラ）</li>
+  </ul>
+  <p>韓国の利用者向けの個人情報の国外移転に関するお知らせ（韓国個人情報保護法第28条の8）：</p>
+  <ul>
+    <li>移転先：Google LLC（連絡先 <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>）</li>
+    <li>移転先の国と項目：
+      日本（東京のデータセンター、asia-northeast1）— 病棟・勤務表・メンバーの情報、表示名、プッシュトークン、アプリの言語、呼び出し回数；
+      米国 — メールアドレス、AppleまたはGoogleのアカウント識別子、Googleアカウントの名前と写真のURL；
+      米国などGoogleの設備がある国 — 通知を届けるためのプッシュトークン</li>
+    <li>移転の時期と方法：ログインやサーバー機能の利用時（ログイン・保存・通知）に、暗号化された通信（HTTPS）でネットワークを通じて送信</li>
+    <li>利用目的：アカウントの管理、勤務表の保管と同期、勤務表の公開通知の送信</li>
+    <li>保有・利用期間：アカウントを削除するまで（下記6の職場の記録は病棟が削除されるまで）</li>
+    <li>拒否の方法と影響：ログインせずに使えば移転されません。その場合、スタッフの招待・公開・通知などのサーバー機能は使えませんが、端末で勤務表を作って使う機能はそのまま使えます。</li>
+  </ul>
+
+  <h2>4. 取扱いの委託</h2>
+  <p>サーバー・認証・プッシュ通知の運用（データの保管、ログインの処理、通知の配信）をGoogle LLC（Firebase）に委託しています。</p>
+
+
+  <h2>5. 広告と広告識別子</h2>
+  <p>
+    広告はiOSアプリで有料プランに登録していないユーザーにのみバナーで表示し、勤務表のデータは広告SDKに渡しません。
+    サブスクリプションはAppleのアプリ内課金で販売し、運営者は決済情報を受け取りません。
+  </p>
+  <p>
+    本アプリはGoogle AdMobを通じて広告を表示します。AdMobは広告のパーソナライズのために
+    広告識別子（例：iOSのIDFA、Androidの広告ID）や端末・利用状況の情報を収集することがあります。
+    詳しくは<a href="https://policies.google.com/privacy">Googleのプライバシーポリシー</a>と
+    <a href="https://support.google.com/admob/answer/9012903">AdMobのパートナーに関する情報</a>をご覧ください。
+  </p>
+  <p>
+    欧州経済領域（EEA）および英国（UK）のユーザーには、Googleのユーザー向けメッセージ プラットフォーム（UMP、User Messaging Platform）を
+    通じて広告のパーソナライズへの同意をお願いしています。同意の選択はアプリの設定画面からいつでも変更できます。
+  </p>
+  <p>
+    広告識別子の収集を望まない場合は、次の方法でオプトアウトできます：
+    iOSでは<code>設定 &gt; プライバシーとセキュリティ &gt; トラッキング</code>（App Tracking Transparency、ATT）でアプリごとのトラッキングの許可を管理できます。
+  </p>
+
+
+  <h2>6. 保有期間と削除</h2>
+  <ul>
+    <li>アカウントの削除：アプリの<strong>設定 → アカウント → アカウントを削除</strong>からいつでも削除できます。自分が作成した病棟は、先に編集者に引き継ぐか病棟ごと削除する必要があります。</li>
+    <li>削除の手順と方法：アカウントを削除すると、ログイン情報、病棟のメンバー情報、自分が作成した招待リンク、プッシュトークン、アプリの言語、呼び出し回数をサーバーからすぐに削除します（復元できない形で電子記録を削除）。運営者は別のバックアップを持ちません。削除されたログイン情報はGoogleの方針に従い180日以内にGoogleの運用・バックアップシステムからも消去され、ログインサービスが記録するIPアドレスは数週間だけ保管されます。</li>
+    <li>勤務表の中の名前の行と職場の記録（勤務表の保存・公開や参加の承認を誰が行ったかを示す内部ユーザーID）は、アカウントを削除しても病棟に残ります。名前の行を削除するには勤務表の作成者に依頼してください。病棟が削除されると一緒に削除されます。</li>
+    <li>ログインせずにこの端末にだけ保存した勤務表は、アプリを削除すると（Webではブラウザのデータを消去すると）一緒に削除されます。アカウントを削除してもそのまま残ります。</li>
+    <li>書き出した画像・PDF・印刷物・ファイルには勤務表の内容がそのまま含まれます。「名前を番号に置き換えて共有」をオンにしない限り、名前も含まれます。すでに他の人に渡った写しを遠隔で削除することはできません。</li>
+  </ul>
+
+  <h2>7. 安全管理措置と漏えい時の通知</h2>
+  <ul>
+    <li>通信はすべて暗号化（HTTPS）しています。</li>
+    <li>セキュリティルールで本人と同じ病棟のメンバーだけがデータを読めるようにアクセスを制限し、承認待ち・退職（保管）のアカウントは勤務表を読めません。</li>
+    <li>招待リンクはハッシュ値だけを保存し、作り直すと以前のリンクはすぐに使えなくなります。</li>
+    <li>サービスに必要な最小限の情報だけを取得します。</li>
+    <li>外的環境の把握：データは日本と米国（通知の配信はGoogleの設備があるその他の国を含む）で取り扱われ、これらの国の個人情報保護制度を踏まえて措置を講じています。</li>
+    <li>個人情報の漏えいが確認された場合は、速やかに対象の利用者に通知し、法令に従って関係機関に報告します。</li>
+  </ul>
+
+  <h2>8. Web版</h2>
+  <p>
+    Web版（<a href="https://duty-roster-89f38.web.app/duty/">https://duty-roster-89f38.web.app/duty/</a>）も同じように動作します。
+    ログインしない場合、勤務表はそのブラウザのストレージにのみ保存されます。Web版はフォントをGoogle Fontsから読み込み、
+    その際ブラウザがGoogleのサーバーに接続します。リンクでの共有は終了しました。
+  </p>
+
+  <h2>9. ご本人の権利と苦情の申出先</h2>
+  <p>
+    保有個人データの開示・訂正・削除・利用停止は、下記のメールアドレスでいつでもご請求いただけ、遅滞なく対応します。
+    勤務表に名前が載った経緯（取得元）もお問い合わせいただけます。勤務表の中の名前の行は病棟の作成者が管理するため、まず作成者にご依頼ください。
+  </p>
+  <p>苦情・相談は次の機関にも申し出ることができます。</p>
+  <ul>
+    <li>個人情報保護委員会：<a href="https://www.ppc.go.jp">ppc.go.jp</a></li>
+    <li>韓国の利用者：個人情報侵害申告センター（韓国インターネット振興院、KISA）118、<a href="https://privacy.kisa.or.kr">privacy.kisa.or.kr</a>／個人情報紛争調停委員会 1833-6972、<a href="https://www.kopico.go.kr">kopico.go.kr</a></li>
+  </ul>
+
+  <h2>10. 運営者とお問い合わせ</h2>
+  <ul>
+    <li>運営者：Deokhyeon Kim（個人開発者）— 代表者および個人情報の取扱いの責任者</li>
+    <li>連絡先：<a href="mailto:kdhmny@gmail.com">kdhmny@gmail.com</a></li>
+    <li>住所：ご請求があれば遅滞なくお知らせします。</li>
+  </ul>
 </section>
 
 <hr>
 
 <section lang="en">
   <h1>Duty Roster Privacy Policy</h1>
-  <p class="meta">Last generated: 2026-10-01</p>
+  <p class="meta">Last generated: 2026-10-03</p>
 
-  <h2>1. Information We Collect</h2>
+  <h2>1. Information We Handle and Why</h2>
   <p>
-    Duty Roster ("the App") requires no account. Data you enter (e.g. records,
-    settings) is stored locally on your device by default. The App does not transmit
-    personal data to a server or store it in any member database.
+    Duty Roster ("the App") can be used without signing in. Without signing in, rosters are stored
+    only on this device (on the web, in that browser's storage) and are not sent to a server.
+  </p>
+  <p>If you sign in to use the server features (inviting staff, publishing rosters, notifications), we handle the following:</p>
+  <ul>
+    <li>Held by the sign-in service (Firebase Authentication): email address, Apple or Google account identifier. With Google sign-in it also holds your Google account name and profile photo URL; with Apple sign-in the email may be an Apple relay address — to create your account and identify you</li>
+    <li>The display name you enter when joining a ward — so that ward's owner and editors can check join requests and manage members</li>
+    <li>Ward, roster and member details (the name rows in rosters, members' roles and linked rows) — to keep rosters, sync them between the web and iPhone, and show them to the ward's members</li>
+    <li>Your devices' push tokens and the app language — to send publish notifications in that language</li>
+    <li>A per-account call count — to block excessive requests in a short time and protect the service</li>
+    <li>A hash of each invite link — to check invite links (the links themselves are not stored)</li>
+  </ul>
+  <p>
+    While signing you in, Google (Firebase Authentication) uses connection details such as your IP address and user agent to prevent abuse.
+    We don't ask for phone numbers, staff numbers or dates of birth. We do not look at roster contents or use them for analytics or ads.
   </p>
 
+  <h2>2. What Members of the Same Ward See</h2>
+  <p>
+    Members of a ward can see every roster published in that ward, including the name rows. The member list and members'
+    display names are visible only to the owner and editors, who see the display name of anyone who asks to join in order to approve them.
+    The ward's owner manages the roster contents.
+  </p>
 
-  <h2>2. Advertising and Ad Identifiers</h2>
+  <h2>3. Where Data Is Kept and Overseas Transfer</h2>
+  <ul>
+    <li>Ward, roster and member details, display names, push tokens, app language, call count and invite hashes: Google Cloud Firestore and Cloud Functions, Tokyo, Japan region (asia-northeast1)</li>
+    <li>Sign-in details: Firebase Authentication, United States (according to Google, this service runs only from US data centers)</li>
+    <li>Notification delivery: Firebase Cloud Messaging, the United States and other countries where Google has facilities (Google's global infrastructure)</li>
+  </ul>
+  <p>Notice of overseas transfer of personal information for users in Korea (Personal Information Protection Act, Article 28-8):</p>
+  <ul>
+    <li>Recipient: Google LLC (contact <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>)</li>
+    <li>Countries and items:
+      Japan (data center in Tokyo, asia-northeast1) — ward, roster and member details, display names, push tokens, the app language and the call count;
+      United States — email address, Apple or Google account identifier, Google account name and photo URL;
+      the United States and other countries where Google has facilities — push tokens, to deliver notifications</li>
+    <li>When and how: sent over the network with an encrypted connection (HTTPS) when you sign in or use the server features (signing in, saving, notifications)</li>
+    <li>Purpose: managing your account, keeping and syncing rosters, and sending publish notifications</li>
+    <li>Retention: until you delete your account (the workplace records in section 6 stay until the ward is deleted)</li>
+    <li>How to refuse, and what happens: use the App without signing in and nothing is transferred. Inviting staff, publishing and notifications are then not available; making and using rosters on the device still works.</li>
+  </ul>
+
+  <h2>4. Entrusted Processing</h2>
+  <p>Running the servers, sign-in and push notifications (storing data, processing sign-ins, delivering notifications) is entrusted to Google LLC (Firebase).</p>
+
+
+  <h2>5. Advertising and Ad Identifiers</h2>
+  <p>
+    Ads appear only in the iOS app, as a banner, for users without a subscription; roster data is never passed to the ad SDK.
+    Subscriptions are sold through Apple In-App Purchase, and we do not receive payment details.
+  </p>
   <p>
     This App displays ads via Google AdMob. AdMob may collect advertising
     identifiers (e.g. iOS IDFA, Android Advertising ID) and device/usage information
@@ -97,26 +336,55 @@
   </p>
   <p>
     You can opt out of advertising identifier collection at any time:
-
     on iOS via <code>Settings &gt; Privacy &amp; Security &gt; Tracking</code>
     (App Tracking Transparency, ATT), where you can manage per-app tracking permission.
   </p>
 
 
-  <h2>3. Data Retention and Deletion</h2>
+  <h2>6. Retention and Deletion</h2>
+  <ul>
+    <li>Deleting your account: in the App, open <strong>Settings → Account → Delete account</strong> at any time. Wards you made must first be handed over to an editor or deleted entirely.</li>
+    <li>How data is destroyed: when you delete your account, your sign-in details, ward memberships, invite links you made, push tokens, app language and call count are deleted from the server at once (electronic records deleted so they cannot be restored). We keep no separate backups. Google removes deleted sign-in data from its live and backup systems within 180 days under its policy, and the IP addresses logged by the sign-in service are kept only for a few weeks.</li>
+    <li>Your name rows in rosters and other workplace records (the internal user ID that shows who saved or published a roster or approved a join request) stay with the ward after you delete your account. To remove your name rows, ask the person who made the roster. They are deleted when the ward is deleted.</li>
+    <li>Rosters kept only on this device without signing in are removed when you uninstall the App (on the web, when you clear the browser's data). Deleting your account does not remove them.</li>
+    <li>Images, PDFs, prints and files you export contain the roster itself, including names unless you turn on "Replace names with numbers". Copies already passed to others cannot be deleted remotely.</li>
+  </ul>
+
+  <h2>7. Safety Measures and Breach Notification</h2>
+  <ul>
+    <li>All data is encrypted in transit (HTTPS).</li>
+    <li>Security rules let only you and the members of your ward read the data; accounts waiting for approval or archived (left) cannot read rosters.</li>
+    <li>Invite links are stored only as a hash, and making a new link stops the old one at once.</li>
+    <li>We collect only what the service needs.</li>
+    <li>Data is handled in Japan and the United States (and, for notification delivery, other countries where Google has facilities); we take these measures with those countries' privacy rules in mind.</li>
+    <li>If a breach of personal information is found, we notify the affected users without delay and report it to the authorities as the law requires.</li>
+  </ul>
+
+  <h2>8. Web Version</h2>
   <p>
-    Data stored locally is removed when you uninstall the App. You can delete
-    entries one by one inside the App.
+    The web version (<a href="https://duty-roster-89f38.web.app/duty/">https://duty-roster-89f38.web.app/duty/</a>) works the same way.
+    Without signing in, rosters are stored only in that browser's storage. The web version loads fonts from Google Fonts,
+    so the browser connects to Google's servers. Rosters are no longer shared by link.
   </p>
 
-  <h2>4. Web Version and Share Links</h2>
+  <h2>9. Your Rights and Complaints</h2>
+  <p>
+    You can ask at any time, by the email below, to see, correct or delete your personal information or to suspend its processing,
+    and we will act without delay. You can also ask how your name came to be in a roster (its source). Name rows in rosters are managed by the
+    ward's owner, so please ask them first.
+  </p>
+  <p>You can also take a complaint to:</p>
   <ul>
-    <li>The web version (https://donald-deok.github.io/duty/) stores rosters only in that browser's storage. There is no account and no server, and roster data is never sent anywhere. The web version loads fonts from Google Fonts, so the browser connects to Google's servers.</li>
-    <li>A share link contains the roster itself, including names unless you turn on "Replace names with numbers". Anyone who has the link can open it. The roster is in the part of the link after <code>#</code>, which is not sent to the web server.</li>
+    <li>Korea: Personal Information Infringement Report Center (KISA), 118, <a href="https://privacy.kisa.or.kr">privacy.kisa.or.kr</a>; Personal Information Dispute Mediation Committee, 1833-6972, <a href="https://www.kopico.go.kr">kopico.go.kr</a></li>
+    <li>Japan: Personal Information Protection Commission, <a href="https://www.ppc.go.jp">ppc.go.jp</a></li>
   </ul>
-  <h2>5. Contact</h2>
-  <p>For privacy inquiries: <a href="mailto:kdhmny@gmail.com">kdhmny@gmail.com</a></p>
-</section>
 
+  <h2>10. Operator and Contact</h2>
+  <ul>
+    <li>Operator: Deokhyeon Kim (individual developer) — representative and privacy officer</li>
+    <li>Contact: <a href="mailto:kdhmny@gmail.com">kdhmny@gmail.com</a></li>
+    <li>Address: provided without delay on request.</li>
+  </ul>
+</section>
 </body>
 </html>
